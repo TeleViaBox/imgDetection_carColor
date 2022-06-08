@@ -37,7 +37,7 @@ if os.path.isdir('images') != True:
         fCount = 0
 
         while 1:
-        # 影片轉圖片
+        # convert VIDEO to IMAGE
             ret,frame = raw.read()
             fCount += 1
             if (ret == True) :
@@ -71,7 +71,7 @@ for num in range(1, 674):
 
         # print(BK_Color[x_axis, 0])
         Background_sum[num] += Background[num]
-        
+
     Background[num] += BK_Color[:,0]
     print(Background[num], "num")
     print((Background_sum[num]), "sum")
@@ -80,6 +80,15 @@ for num in range(1, 674):
     # print(Background_sum)
     # cv2.waitKey(0)
 
+    # print(type(Background), "dtype")
+sum1 = [0] * 674
+for out in range(0, len(Background[3])):
+    for backIndex in range(1, len(Background)):
+        # print(backIndex, "backIndex")
+        # print(Background[1][40] + Background[1][40])
+        sum1[backIndex] += Background[backIndex][out] # ISSUE: If the backIndex is 0, it will be FAIL!
+print(sum1)
+print("e")
 
 for num in range(1, 674):
     image_path = './images/0-frame-608x608-'+ str(num) +'.jpg'
@@ -96,6 +105,7 @@ for num in range(1, 674):
     # print(Background) # RESULT:RUNNABLE, dirty
     for x_axis in range(0,99):
         BK_Color[x_axis, 0] = state[x_axis, 0] + state[x_axis, 1] + state[x_axis, 2]
+
     # print(BK_Color[:,0], "BK!")
     # print(Background[num], "Backround!")
     
